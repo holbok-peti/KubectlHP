@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: holbok-peti-laravel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laravel
+  template:
+    metadata:
+      labels:
+        app: laravel
+    spec:
+      containers:
+        - name: laravel
+          image: holbok-peti-laravel:latest
+          ports:
+            - containerPort: 8000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: holbok-peti-laravel-service
+spec:
+  selector:
+    app: laravel
+  ports:
+    - port: 8000
+      targetPort: 8000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: holbok-peti-angular
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular
+  template:
+    metadata:
+      labels:
+        app: angular
+    spec:
+      containers:
+        - name: angular
+          image: holbok-peti-angular:latest
+          ports:
+            - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: holbok-peti-angular-service
+spec:
+  selector:
+    app: angular
+  ports:
+    - port: 80
+      targetPort: 80
+  type: NodePort
+
+
+---

@@ -1,0 +1,14 @@
+@baseUrl = http://127.0.0.1:8000
+
+POST {{baseUrl}}/api/szamlalo
+Content-Type: application/json
+
+{
+    "nev": "Szamlalo1",
+    "ertek_a": 5,
+    "ertek_b": 2
+}
+
+###
+
+GET {{baseUrl}}/api/szamlalo

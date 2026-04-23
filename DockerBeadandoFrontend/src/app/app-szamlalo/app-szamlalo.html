@@ -1,0 +1,48 @@
+<div style="max-width: 400px; margin: auto;">
+  <h2>Simple Form</h2>
+
+  <form #szamlaloForm="ngForm" (ngSubmit)="submit(szamlaloForm)">
+    <input
+      type="text"
+      name="szamlalo_nev"
+      placeholder="Számláló név"
+      [(ngModel)]="szamlalo_nev"
+      required
+    />
+
+    <input
+      type="number"
+      name="input_a"
+      placeholder="Input A"
+      [(ngModel)]="input_a"
+      required
+    />
+
+    <input
+      type="number"
+      name="input_b"
+      placeholder="Input B"
+      [(ngModel)]="input_b"
+      required
+    />
+
+    <button type="submit" [disabled]="szamlaloForm.invalid || isSubmitting">
+      {{ isSubmitting ? 'Sending...' : 'Submit' }}
+    </button>
+  </form>
+
+  <p *ngIf="errorMessage" style="color: red; margin-top: 10px;">
+    {{ errorMessage }}
+  </p>
+
+  <hr />
+
+  <h3>Previous Entries</h3>
+
+  <div *ngFor="let item of history" style="border:1px solid #ccc; margin:10px; padding:10px;">
+    <p><b>Név:</b> {{ item.nev }}</p>
+    <p><b>A:</b> {{ item.ertek_a }}</p>
+    <p><b>B:</b> {{ item.ertek_b }}</p>
+    <p><b>Eredmény:</b> {{ item.eredmeny }}</p>
+  </div>
+</div>
