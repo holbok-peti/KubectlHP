@@ -24,13 +24,13 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build backend image
-        run: docker build -t ghcr.io/holbok-peti/laravel:latest ./DockerBeadandoBackend
+        run: docker build -f ./DockerBeadandoBackend/dockerfile -t ghcr.io/holbok-peti/laravel:latest ./DockerBeadandoBackend
 
       - name: Push backend image
         run: docker push ghcr.io/holbok-peti/laravel:latest
 
       - name: Build frontend image
-        run: docker build -t ghcr.io/holbok-peti/angular:latest ./DockerBeadandoFrontend
+        run: docker build -f ./DockerBeadandoFrontend/dockerfile -t ghcr.io/holbok-peti/angular:latest ./DockerBeadandoFrontend
 
       - name: Push frontend image
         run: docker push ghcr.io/holbok-peti/angular:latest
