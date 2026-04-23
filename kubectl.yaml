@@ -12,8 +12,6 @@ spec:
       labels:
         app: laravel
     spec:
-      imagePullSecrets:
-        - name: ghcr-secret
       containers:
         - name: laravel
           image: ghcr.io/holbok-peti/laravel:latest
@@ -49,8 +47,6 @@ spec:
       labels:
         app: angular
     spec:
-      imagePullSecrets:
-        - name: ghcr-secret
       containers:
         - name: angular
           image: ghcr.io/holbok-peti/angular:latest
@@ -69,5 +65,6 @@ spec:
   ports:
     - port: 80
       targetPort: 80
+      nodePort: 30080
   type: NodePort
 
