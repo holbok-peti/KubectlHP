@@ -65,6 +65,34 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30080
-  type: NodePort
+  type: ClusterIP
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubectlhp-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: kubectlhp-holbok-peter.jcloud.jedlik.cloud
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: laravel-service
+                port:
+                  number: 8000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: angular-service
+                port:
+                  number: 80
 
